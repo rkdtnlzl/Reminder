@@ -6,8 +6,10 @@
 //
 
 import RealmSwift
+import Foundation
 
 class TodoTable: Object {
     @Persisted var title: String
     @Persisted var memo: String?
+    @Persisted var deadline: Date?
 }
