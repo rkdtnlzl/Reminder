@@ -107,7 +107,6 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
             
             if indexPath.section == 1, 
                 let deadline = selectedDeadline {
-                print("++++++++++++++")
                 let formatter = DateFormatter()
                 formatter.dateStyle = .medium
                 cell.detailTextLabel?.text = formatter.string(from: deadline)

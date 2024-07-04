@@ -34,7 +34,6 @@ final class MainViewController: BaseViewController {
     }
     
     @objc func newTodoButtonClicked() {
-        print(#function)
         let vc = NewTodoViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .pageSheet
