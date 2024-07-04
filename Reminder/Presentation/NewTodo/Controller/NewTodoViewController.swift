@@ -23,6 +23,7 @@ final class NewTodoViewController: BaseViewController {
         setupNavigationBar()
         configureRealm()
         configureTableView()
+        print(realm.configuration.fileURL!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,11 +78,11 @@ final class NewTodoViewController: BaseViewController {
             newTodo.deadline = selectedDeadline
             realm.add(newTodo)
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     @objc private func dismissViewController() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
 
@@ -94,26 +95,22 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TodoInputViewCell", for: indexPath) as! TodoInputViewCell
             cell.setup(todoInputView: todoInputView)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
             cell.textLabel?.text = sectionTitles[indexPath.section]
             cell.accessoryType = .disclosureIndicator
             
-            if indexPath.section == 1, let deadline = selectedDeadline {
+            if indexPath.section == 1, 
+                let deadline = selectedDeadline {
                 print("++++++++++++++")
-//                let formatter = DateFormatter()
-//                formatter.dateStyle = .medium
-//                cell.detailTextLabel?.text = formatter.string(from: deadline)
-//                cell.detailTextLabel?.text = "aaa"
+                let formatter = DateFormatter()
+                formatter.dateStyle = .medium
+                cell.detailTextLabel?.text = formatter.string(from: deadline)
             }
             return cell
         }
