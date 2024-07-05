@@ -7,12 +7,20 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 final class MainViewController: BaseViewController {
     
     private let newTodoButton = UIButton()
     private let totalLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    private var repository = PurchaseTableRepository()
+    private var todoCount = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadTodoCount()
+    }
     
     override func configureHierarchy() {
         view.addSubview(newTodoButton)
@@ -71,6 +79,11 @@ final class MainViewController: BaseViewController {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         return layout
     }
+    
+    private func loadTodoCount() {
+        todoCount = repository.countItems()
+        collectionView.reloadData()
+    }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -87,9 +100,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if indexPath.row == 0 {
             cell.categoryTitle.text = "전체"
+            cell.categoryCount.text = "\(todoCount)"
         }
         return cell
     }
-    
-    
 }
