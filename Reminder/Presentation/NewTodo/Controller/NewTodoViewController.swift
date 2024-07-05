@@ -16,6 +16,7 @@ final class NewTodoViewController: BaseViewController {
     private var realm: Realm!
     private var selectedDeadline: Date?
     private var selectedTag: String?
+    private var selectedPriority: String?
     
     private let sectionTitles = ["할 일 입력", "마감일", "태그", "우선 순위", "이미지 추가"]
     
@@ -78,6 +79,7 @@ final class NewTodoViewController: BaseViewController {
             newTodo.memo = todoInputView.memoTextView.text.isEmpty ? nil : todoInputView.memoTextView.text
             newTodo.deadline = selectedDeadline
             newTodo.tag = selectedTag
+            newTodo.priority = selectedPriority
             realm.add(newTodo)
         }
         dismiss(animated: true)
@@ -108,7 +110,7 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
             cell.accessoryType = .disclosureIndicator
             
             if indexPath.section == 1,
-                let deadline = selectedDeadline {
+               let deadline = selectedDeadline {
                 let formatter = DateFormatter()
                 formatter.dateStyle = .medium
                 cell.detailTextLabel?.text = formatter.string(from: deadline)
@@ -116,6 +118,10 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
                       let tag = selectedTag {
                 cell.detailTextLabel?.text = tag
                 print(tag)
+            } else if indexPath.section == 3,
+                      let priority = selectedPriority {
+                cell.detailTextLabel?.text = priority
+                print(priority)
             }
             return cell
         }
@@ -138,6 +144,13 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
             navigationController?.pushViewController(tagVC, animated: true)
+        } else if indexPath.section == 3 {
+            let priorityVC = NewPriorityViewController()
+            priorityVC.onSave = { [weak self] priority in
+                self?.selectedPriority = priority
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            navigationController?.pushViewController(priorityVC, animated: true)
         }
     }
 }
