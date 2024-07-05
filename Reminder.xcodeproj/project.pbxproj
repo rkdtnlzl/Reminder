@@ -25,6 +25,7 @@
 		01FF36B12C3592FE004F5F3A /* TodoInputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36B02C3592FE004F5F3A /* TodoInputViewCell.swift */; };
 		01FF36BF2C36E409004F5F3A /* MainTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36BE2C36E409004F5F3A /* MainTodoCell.swift */; };
 		01FF36C12C36E427004F5F3A /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36C02C36E427004F5F3A /* BaseCollectionViewCell.swift */; };
+		01FF36C32C383B8A004F5F3A /* TodoTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36C22C383B8A004F5F3A /* TodoTableRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		01FF36B02C3592FE004F5F3A /* TodoInputViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoInputViewCell.swift; sourceTree = "<group>"; };
 		01FF36BE2C36E409004F5F3A /* MainTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTodoCell.swift; sourceTree = "<group>"; };
 		01FF36C02C36E427004F5F3A /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		01FF36C22C383B8A004F5F3A /* TodoTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				01FF36A22C342F19004F5F3A /* Todo.swift */,
+				01FF36C22C383B8A004F5F3A /* TodoTableRepository.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				01FF36A32C342F19004F5F3A /* Todo.swift in Sources */,
 				01FF36B12C3592FE004F5F3A /* TodoInputViewCell.swift in Sources */,
 				01FF369F2C3428FB004F5F3A /* TodoInputView.swift in Sources */,
+				01FF36C32C383B8A004F5F3A /* TodoTableRepository.swift in Sources */,
 				01FF36A12C342D1E004F5F3A /* BaseView.swift in Sources */,
 				01FF369D2C341C17004F5F3A /* NewTodoViewController.swift in Sources */,
 				01C362A82C34178600D8ED61 /* SceneDelegate.swift in Sources */,
