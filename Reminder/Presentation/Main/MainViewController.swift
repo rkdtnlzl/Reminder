@@ -14,7 +14,7 @@ final class MainViewController: BaseViewController {
     private let newTodoButton = UIButton()
     private let totalLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    private var repository = PurchaseTableRepository()
+    private var repository = TodoTableRepository()
     private var todoCount = 0
     
     override func viewDidLoad() {
@@ -112,5 +112,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.categoryCount.text = "\(todoCount)"
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let vc = TodoListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
