@@ -14,24 +14,19 @@ final class NewDeadlineViewController: BaseViewController {
     private let datePicker = UIDatePicker()
     private let saveButton = UIButton()
     var onSave: ((Date) -> Void)?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupDatePicker()
-        setupSaveButton()
-    }
     
-    private func setupDatePicker() {
+    override func configureView() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ko_KR")
-    }
-    
-    private func setupSaveButton() {
+        
         saveButton.setTitle("추가하기", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = .blue
         saveButton.layer.cornerRadius = 10
+    }
+    
+    override func configureTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
     }
     
