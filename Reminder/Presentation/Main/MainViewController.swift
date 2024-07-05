@@ -20,6 +20,7 @@ final class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTodoCount()
+        configureNotificationObservers()
     }
     
     override func configureHierarchy() {
@@ -83,6 +84,14 @@ final class MainViewController: BaseViewController {
     private func loadTodoCount() {
         todoCount = repository.countItems()
         collectionView.reloadData()
+    }
+    
+    private func configureNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(todoAdded), name: NSNotification.Name("newTodoAdded"), object: nil)
+    }
+    
+    @objc private func todoAdded() {
+        loadTodoCount()
     }
 }
 

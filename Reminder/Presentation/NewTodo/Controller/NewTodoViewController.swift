@@ -82,12 +82,19 @@ final class NewTodoViewController: BaseViewController {
             newTodo.priority = selectedPriority
             realm.add(newTodo)
         }
+        NotificationCenter.default.post(name: NSNotification.Name("newTodoAdded"), object: nil)
         dismiss(animated: true)
     }
     
     @objc private func dismissViewController() {
+        NotificationCenter.default.post(name: NSNotification.Name("newTodoAdded"), object: nil)
         dismiss(animated: true)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
