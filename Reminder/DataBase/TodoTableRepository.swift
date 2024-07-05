@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class PurchaseTableRepository {
+final class TodoTableRepository {
     
     private let realm = try! Realm()
     
@@ -32,5 +32,9 @@ final class PurchaseTableRepository {
         try! realm.write {
             realm.delete(data)
         }
+    }
+    
+    func fetchAllItems() -> Results<TodoTable> {
+        return realm.objects(TodoTable.self)
     }
 }
