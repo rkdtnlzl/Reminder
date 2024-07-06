@@ -99,9 +99,11 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completionHandler in
             let itemToEdit = self.todoData[indexPath.row]
-            print("========\(itemToEdit)")
-            let vc = TodoModifyViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            let modifyVC = TodoModifyViewController()
+            modifyVC.todoItem = itemToEdit
+            modifyVC.modalPresentationStyle = .overFullScreen
+            modifyVC.modalTransitionStyle = .coverVertical
+            self.present(modifyVC, animated: true)
             completionHandler(true)
         }
         editAction.backgroundColor = .blue
