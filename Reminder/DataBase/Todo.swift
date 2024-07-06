@@ -9,6 +9,7 @@ import RealmSwift
 import Foundation
 
 class TodoTable: Object {
+    @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var memo: String?
     @Persisted var deadline: Date?
