@@ -29,6 +29,7 @@
 		01FF36C72C384100004F5F3A /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36C62C384100004F5F3A /* TodoListViewController.swift */; };
 		01FF36C92C3846BB004F5F3A /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36C82C3846BB004F5F3A /* TodoListCell.swift */; };
 		01FF36CB2C3846E3004F5F3A /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36CA2C3846E3004F5F3A /* BaseTableViewCell.swift */; };
+		01FF36CD2C396AE5004F5F3A /* TodoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		01FF36C62C384100004F5F3A /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		01FF36C82C3846BB004F5F3A /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 		01FF36CA2C3846E3004F5F3A /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				01FF36C62C384100004F5F3A /* TodoListViewController.swift */,
 				01FF36C82C3846BB004F5F3A /* TodoListCell.swift */,
+				01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				01FF36AF2C3591DC004F5F3A /* NewPriorityViewController.swift in Sources */,
 				01FF36C72C384100004F5F3A /* TodoListViewController.swift in Sources */,
 				01FF36A32C342F19004F5F3A /* Todo.swift in Sources */,
+				01FF36CD2C396AE5004F5F3A /* TodoModifyViewController.swift in Sources */,
 				01FF36B12C3592FE004F5F3A /* TodoInputViewCell.swift in Sources */,
 				01FF369F2C3428FB004F5F3A /* TodoInputView.swift in Sources */,
 				01FF36C32C383B8A004F5F3A /* TodoTableRepository.swift in Sources */,
