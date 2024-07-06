@@ -38,11 +38,9 @@ final class TodoTableRepository {
         return realm.objects(TodoTable.self)
     }
     
-    func updateItem(_ data: TodoTable, newTitle: String, newMemo: String?, newTag: String?) {
+    func updateMemo(_ data: TodoTable, newMemo: String?) {
         try! realm.write {
-            data.title = newTitle
             data.memo = newMemo
-            data.tag = newTag
             realm.add(data, update: .modified)
         }
     }
