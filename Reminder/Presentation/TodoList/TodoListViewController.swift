@@ -60,4 +60,18 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { (action, view, completionHandler) in
+            let deleteItem = self.todoData[indexPath.row]
+            self.repository.deleteItem(deleteItem)
+            tableView.performBatchUpdates({
+                self.todoData = self.repository.fetchAllItems()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: nil)
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
