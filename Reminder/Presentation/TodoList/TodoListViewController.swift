@@ -18,11 +18,17 @@ final class TodoListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigation()
         loadTodoItems()
     }
     
     private func loadTodoItems() {
         todoData = repository.fetchAllItems()
+    }
+    
+    private func configureNavigation() {
+        let rightBarButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showSortOptions))
+        navigationItem.rightBarButtonItem = rightBarButton
     }
     
     override func configureHierarchy() {
@@ -43,6 +49,28 @@ final class TodoListViewController: BaseViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    @objc private func showSortOptions() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "마감일순", style: .default, handler: { _ in
+            self.sortByDeadLine()
+        }))
+        alert.addAction(UIAlertAction(title: "우선순위순", style: .default, handler: { _ in
+            self.sortByPriority()
+        }))
+        present(alert, animated: true)
+    }
+    
+    private func sortByDeadLine() {
+        todoData = repository.fetchAllItems().sorted(byKeyPath: "deadline", ascending: true)
+        tableView.reloadData()
+    }
+    
+    private func sortByPriority() {
+        todoData = repository.fetchAllItems().sorted(byKeyPath: "priority", ascending: true)
+        tableView.reloadData()
+    }
+    
 }
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -52,17 +80,15 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.id) as! TodoListCell
-        
         let data = todoData[indexPath.row]
         cell.titleLabel.text = data.title
         cell.descriptionLabel.text = data.memo ?? ""
         cell.tagLabel.text = data.tag ?? ""
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { (action, view, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completionHandler in
             let deleteItem = self.todoData[indexPath.row]
             self.repository.deleteItem(deleteItem)
             tableView.performBatchUpdates({
@@ -71,7 +97,15 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             }, completion: nil)
             completionHandler(true)
         }
+        let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completionHandler in
+            let itemToEdit = self.todoData[indexPath.row]
+            print("========\(itemToEdit)")
+            let vc = TodoModifyViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            completionHandler(true)
+        }
+        editAction.backgroundColor = .blue
         
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
 }
