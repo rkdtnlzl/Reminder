@@ -48,7 +48,7 @@ final class NewTagViewController: BaseViewController {
     }
     
     @objc private func saveButtonClicked() {
-        if let text = tagField.text, tagField.text?.first == "#" {
+        if let text = tagField.text {
             onSave?(text)
         }
         navigationController?.popViewController(animated: true)
