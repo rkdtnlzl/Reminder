@@ -14,6 +14,16 @@ final class TodoListViewController: BaseViewController {
     let tableView = UITableView()
     private var repository = TodoTableRepository()
     var todoData: Results<TodoTable>!
+    var folder: Folder?
+    
+    init(folder: Folder?) {
+        self.folder = folder
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +33,14 @@ final class TodoListViewController: BaseViewController {
     }
     
     private func loadTodoItems() {
-        todoData = repository.fetchAllItems()
+        if let folder = folder {
+            todoData = folder.folderList.sorted(byKeyPath: "deadline", ascending: true)
+            navigationItem.title = "\(folder.folderName) 모음"
+        } else {
+            todoData = repository.fetchAllItems()
+            navigationItem.title = "전체 할 일"
+        }
+        tableView.reloadData()
     }
     
     private func configureNavigation() {
@@ -36,8 +53,6 @@ final class TodoListViewController: BaseViewController {
     }
     
     override func configureView() {
-        navigationItem.title = "할 일 목록"
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(TodoListCell.self, forCellReuseIdentifier: "TodoListCell")
@@ -62,12 +77,12 @@ final class TodoListViewController: BaseViewController {
     }
     
     private func sortByDeadLine() {
-        todoData = repository.fetchAllItems().sorted(byKeyPath: "deadline", ascending: true)
+        todoData = todoData.sorted(byKeyPath: "deadline", ascending: true)
         tableView.reloadData()
     }
     
     private func sortByPriority() {
-        todoData = repository.fetchAllItems().sorted(byKeyPath: "priority", ascending: true)
+        todoData = todoData.sorted(byKeyPath: "priority", ascending: true)
         tableView.reloadData()
     }
     
