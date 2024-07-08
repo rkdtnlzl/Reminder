@@ -21,7 +21,7 @@ final class NewTagViewController: BaseViewController {
     }
     
     override func configureView() {
-        tagField.placeholder = "태그를 입력하세요"
+        tagField.placeholder = "태그를 입력하세요(Ex. #운동)"
         tagField.backgroundColor = .white
         tagField.borderStyle = .roundedRect
         
@@ -48,10 +48,9 @@ final class NewTagViewController: BaseViewController {
     }
     
     @objc private func saveButtonClicked() {
-        if let text = tagField.text {
+        if let text = tagField.text, tagField.text?.first == "#" {
             onSave?(text)
         }
         navigationController?.popViewController(animated: true)
     }
-    
 }
