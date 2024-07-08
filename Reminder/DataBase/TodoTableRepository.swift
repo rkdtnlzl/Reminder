@@ -44,4 +44,8 @@ final class TodoTableRepository {
             realm.add(data, update: .modified)
         }
     }
+    
+    func detectRealmURL() {
+        print(realm.configuration.fileURL!)
+    }
 }
