@@ -17,6 +17,7 @@ final class NewTodoViewController: BaseViewController {
     private var selectedDeadline: Date?
     private var selectedTag: String?
     private var selectedPriority: String?
+    private var folderRepository = FolderRepository()
     
     private let sectionTitles = ["할 일 입력", "마감일", "태그", "우선 순위", "이미지 추가"]
     
@@ -80,6 +81,10 @@ final class NewTodoViewController: BaseViewController {
             newTodo.deadline = selectedDeadline
             newTodo.tag = selectedTag
             newTodo.priority = selectedPriority
+            realm.add(newTodo)
+        }
+        folderRepository.addFolder(to: newTodo)
+        try! realm.write {
             realm.add(newTodo)
         }
         NotificationCenter.default.post(name: NSNotification.Name("newTodoAdded"), object: nil)
