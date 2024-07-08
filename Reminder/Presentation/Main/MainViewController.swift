@@ -14,12 +14,15 @@ final class MainViewController: BaseViewController {
     private let newTodoButton = UIButton()
     private let totalLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    private var repository = TodoTableRepository()
+    private var todoRepository = TodoTableRepository()
+    private var folderRepository = FolderRepository()
+    private var folders: Results<Folder>?
     private var todoCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTodoCount()
+        loadFolders()
         configureNotificationObservers()
     }
     
@@ -82,7 +85,12 @@ final class MainViewController: BaseViewController {
     }
     
     private func loadTodoCount() {
-        todoCount = repository.countItems()
+        todoCount = todoRepository.countItems()
+        collectionView.reloadData()
+    }
+    
+    private func loadFolders() {
+        folders = folderRepository.fetchAllFolders()
         collectionView.reloadData()
     }
     
@@ -92,12 +100,13 @@ final class MainViewController: BaseViewController {
     
     @objc private func todoAdded() {
         loadTodoCount()
+        loadFolders()
     }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return (folders?.count ?? 0) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,13 +119,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.row == 0 {
             cell.categoryTitle.text = "전체"
             cell.categoryCount.text = "\(todoCount)"
+        } else if let folder = folders?[indexPath.row - 1] {
+            cell.categoryTitle.text = folder.folderName
+            cell.categoryCount.text = "\(folder.folderList.count)"
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let vc = TodoListViewController()
+            let vc = TodoListViewController(folder: nil)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if let folder = folders?[indexPath.row - 1] {
+            let vc = TodoListViewController(folder: folder)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
