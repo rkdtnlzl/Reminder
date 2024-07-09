@@ -9,9 +9,9 @@ import Foundation
 
 class NewDeadlineViewModel {
     
-    var inputDateUpdate: Observable<Date?> = (Observable(nil))
+    var inputDateUpdate: Observable<Date> = (Observable(Date()))
     
-    var outputDateLabel: Observable<Date?> = (Observable(nil))
+    var outputDateLabel: Observable<Date> = (Observable(Date()))
     
     init() {
         inputDateUpdate.bind { _ in
