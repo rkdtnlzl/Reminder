@@ -33,6 +33,7 @@
 		01FF36DC2C3BC9D1004F5F3A /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36DB2C3BC9D1004F5F3A /* FolderRepository.swift */; };
 		01FF36E72C3D2201004F5F3A /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36E62C3D2201004F5F3A /* Observable.swift */; };
 		01FF36E92C3D2314004F5F3A /* NewDeadlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */; };
+		01FF36EB2C3D36EF004F5F3A /* NewPriorityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		01FF36DB2C3BC9D1004F5F3A /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
 		01FF36E62C3D2201004F5F3A /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeadlineViewModel.swift; sourceTree = "<group>"; };
+		01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriorityViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */,
+				01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				01FF36E72C3D2201004F5F3A /* Observable.swift in Sources */,
 				01FF36AF2C3591DC004F5F3A /* NewPriorityViewController.swift in Sources */,
 				01FF36C72C384100004F5F3A /* TodoListViewController.swift in Sources */,
+				01FF36EB2C3D36EF004F5F3A /* NewPriorityViewModel.swift in Sources */,
 				01FF36E92C3D2314004F5F3A /* NewDeadlineViewModel.swift in Sources */,
 				01FF36A32C342F19004F5F3A /* Todo.swift in Sources */,
 				01FF36CD2C396AE5004F5F3A /* TodoModifyViewController.swift in Sources */,
