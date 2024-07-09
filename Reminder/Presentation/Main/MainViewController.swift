@@ -26,6 +26,13 @@ final class MainViewController: BaseViewController {
         configureNotificationObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadTodoCount()
+        loadFolders()
+        collectionView.reloadData()
+    }
+    
     override func configureHierarchy() {
         view.addSubview(newTodoButton)
         view.addSubview(totalLabel)
@@ -102,6 +109,15 @@ final class MainViewController: BaseViewController {
         loadTodoCount()
         loadFolders()
     }
+    
+    func showAlert(title: String, message: String, ok: String,  completionHandler: @escaping (UIAlertAction) -> Void) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            let ok = UIAlertAction(title: ok, style: .default, handler: completionHandler)
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            present(alert, animated: true)
+        }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -131,8 +147,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let vc = TodoListViewController(folder: nil)
             navigationController?.pushViewController(vc, animated: true)
         } else if let folder = folders?[indexPath.row - 1] {
-            let vc = TodoListViewController(folder: folder)
-            navigationController?.pushViewController(vc, animated: true)
+            
+            if folder.folderList.count == 0 {
+                showAlert(title: "폴더 삭제하겠습니까?", message: "", ok: "삭제") { _ in
+                    self.folderRepository.deleteFolder(folder)
+                    self.loadTodoCount()
+                    collectionView.reloadData()
+                }
+            } else {
+                let vc = TodoListViewController(folder: folder)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
+
         }
     }
 }
