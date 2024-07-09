@@ -26,7 +26,7 @@ final class NewDeadlineViewController: BaseViewController {
         viewModel.outputDateLabel.bind { date in
             let myFormatter = DateFormatter()
             myFormatter.dateFormat = "yyyy-MM-dd"
-            let dateString = myFormatter.string(from: date!)
+            let dateString = myFormatter.string(from: date)
             self.dateLabel.text = dateString
         }
     }
@@ -41,9 +41,9 @@ final class NewDeadlineViewController: BaseViewController {
         saveButton.backgroundColor = .blue
         saveButton.layer.cornerRadius = 10
         
-        dateLabel.text = "test"
+        dateLabel.text = ""
         dateLabel.font = .boldSystemFont(ofSize: 17)
-        dateLabel.backgroundColor = .gray
+        dateLabel.backgroundColor = .clear
         dateLabel.textColor = .black
         dateLabel.textAlignment = .center
     }
