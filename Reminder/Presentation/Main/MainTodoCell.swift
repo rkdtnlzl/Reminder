@@ -22,7 +22,7 @@ class MainTodoCell: BaseCollectionViewCell {
     }
     
     override func configureView() {
-        categoryImageView.backgroundColor = .blue
+        categoryImageView.backgroundColor = .clear
         categoryImageView.layer.cornerRadius = 20
         categoryImageView.image = UIImage(systemName: "star")
         
@@ -30,7 +30,7 @@ class MainTodoCell: BaseCollectionViewCell {
         categoryCount.textColor = .white
         categoryCount.text = "0"
         
-        categoryTitle.font = .systemFont(ofSize: 15)
+        categoryTitle.font = .boldSystemFont(ofSize: 17)
         categoryTitle.textColor = .white
         categoryTitle.text = "오늘"
     }
@@ -38,7 +38,7 @@ class MainTodoCell: BaseCollectionViewCell {
     override func configureLayout() {
         categoryImageView.snp.makeConstraints { make in
             make.top.leading.equalTo(contentView).inset(10)
-            make.height.width.equalTo(40)
+            make.height.width.equalTo(30)
         }
         categoryCount.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(10)
