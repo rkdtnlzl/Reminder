@@ -31,6 +31,8 @@
 		01FF36CB2C3846E3004F5F3A /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36CA2C3846E3004F5F3A /* BaseTableViewCell.swift */; };
 		01FF36CD2C396AE5004F5F3A /* TodoModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */; };
 		01FF36DC2C3BC9D1004F5F3A /* FolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36DB2C3BC9D1004F5F3A /* FolderRepository.swift */; };
+		01FF36E72C3D2201004F5F3A /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36E62C3D2201004F5F3A /* Observable.swift */; };
+		01FF36E92C3D2314004F5F3A /* NewDeadlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		01FF36CA2C3846E3004F5F3A /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModifyViewController.swift; sourceTree = "<group>"; };
 		01FF36DB2C3BC9D1004F5F3A /* FolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRepository.swift; sourceTree = "<group>"; };
+		01FF36E62C3D2201004F5F3A /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeadlineViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 			children = (
 				01C362A52C34178600D8ED61 /* AppDelegate.swift */,
 				01C362A72C34178600D8ED61 /* SceneDelegate.swift */,
+				01FF36E62C3D2201004F5F3A /* Observable.swift */,
 				01FF36A42C343D38004F5F3A /* DataBase */,
 				01FF36A62C343DA6004F5F3A /* Presentation */,
 				01FF36A52C343D63004F5F3A /* Base */,
@@ -147,6 +152,7 @@
 		01FF36B32C3598E1004F5F3A /* NewTodo */ = {
 			isa = PBXGroup;
 			children = (
+				01FF36E52C3D21F1004F5F3A /* ViewModel */,
 				01FF36B62C35991E004F5F3A /* View */,
 				01FF36B52C3598FF004F5F3A /* Cell */,
 				01FF36B42C3598EA004F5F3A /* Controller */,
@@ -189,6 +195,14 @@
 				01FF36CC2C396AE5004F5F3A /* TodoModifyViewController.swift */,
 			);
 			path = TodoList;
+			sourceTree = "<group>";
+		};
+		01FF36E52C3D21F1004F5F3A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,8 +293,10 @@
 				01FF36C92C3846BB004F5F3A /* TodoListCell.swift in Sources */,
 				01C362BA2C34186600D8ED61 /* BaseViewController.swift in Sources */,
 				01C362A62C34178600D8ED61 /* AppDelegate.swift in Sources */,
+				01FF36E72C3D2201004F5F3A /* Observable.swift in Sources */,
 				01FF36AF2C3591DC004F5F3A /* NewPriorityViewController.swift in Sources */,
 				01FF36C72C384100004F5F3A /* TodoListViewController.swift in Sources */,
+				01FF36E92C3D2314004F5F3A /* NewDeadlineViewModel.swift in Sources */,
 				01FF36A32C342F19004F5F3A /* Todo.swift in Sources */,
 				01FF36CD2C396AE5004F5F3A /* TodoModifyViewController.swift in Sources */,
 				01FF36B12C3592FE004F5F3A /* TodoInputViewCell.swift in Sources */,
