@@ -30,4 +30,10 @@ final class FolderRepository {
             }
         }
     }
+    
+    func deleteFolder(_ data: Folder) {
+        try! realm.write {
+            realm.delete(data)
+        }
+    }
 }
