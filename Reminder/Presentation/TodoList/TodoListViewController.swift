@@ -15,6 +15,7 @@ final class TodoListViewController: BaseViewController {
     private var repository = TodoTableRepository()
     var todoData: Results<TodoTable>!
     var folder: Folder?
+    private var folderRepository = FolderRepository()
     
     init(folder: Folder?) {
         self.folder = folder
@@ -106,10 +107,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { action, view, completionHandler in
             let deleteItem = self.todoData[indexPath.row]
             self.repository.deleteItem(deleteItem)
-            tableView.performBatchUpdates({
-                self.todoData = self.repository.fetchAllItems()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }, completion: nil)
+            tableView.reloadData()
             completionHandler(true)
         }
         let editAction = UIContextualAction(style: .normal, title: "수정") { action, view, completionHandler in
