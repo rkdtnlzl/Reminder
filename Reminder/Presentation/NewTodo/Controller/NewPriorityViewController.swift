@@ -16,16 +16,26 @@ final class NewPriorityViewController: BaseViewController {
     let saveButton = UIButton()
     var onSave: ((String) -> Void)?
     var selectedPriority: String = "높음"
+    let viewModel = NewPriorityViewModel()
+    let priorityLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTableView()
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.outputPriorityLabel.bind { value in
+            self.priorityLabel.text = value
+        }
     }
     
     override func configureHierarchy() {
         view.addSubview(tableView)
         view.addSubview(saveButton)
+        view.addSubview(priorityLabel)
     }
     
     private func configureTableView() {
@@ -39,6 +49,12 @@ final class NewPriorityViewController: BaseViewController {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = .blue
         saveButton.layer.cornerRadius = 10
+        
+        priorityLabel.text = ""
+        priorityLabel.font = .boldSystemFont(ofSize: 17)
+        priorityLabel.backgroundColor = .clear
+        priorityLabel.textColor = .black
+        priorityLabel.textAlignment = .center
     }
     
     override func configureTarget() {
@@ -48,11 +64,15 @@ final class NewPriorityViewController: BaseViewController {
     override func configureConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(100)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(200)
         }
         saveButton.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
             make.height.equalTo(50)
+        }
+        priorityLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.bottom.equalTo(saveButton.snp.top).inset(-30)
         }
     }
     
@@ -86,6 +106,9 @@ extension NewPriorityViewController: UITableViewDelegate, UITableViewDataSource 
         selectedCell?.accessoryType = .checkmark
         selectedIndexPath = indexPath
         selectedPriority = priorityList[indexPath.row]
+        
+        viewModel.inputPriorityIndex.value = selectedIndexPath?.row ?? 0
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
