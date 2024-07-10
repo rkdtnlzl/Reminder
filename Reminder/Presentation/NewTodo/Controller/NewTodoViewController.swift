@@ -18,15 +18,25 @@ final class NewTodoViewController: BaseViewController {
     private var selectedTag: String?
     private var selectedPriority: String?
     private var folderRepository = FolderRepository()
+    let viewModel = NewTodoViewModel()
     
     private let sectionTitles = ["할 일 입력", "마감일", "태그", "우선 순위", "이미지 추가"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupNavigationBar()
         configureRealm()
         configureTableView()
         print(realm.configuration.fileURL!)
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.outputSaveResult.bind { _ in
+            print("bind")
+            self.dismiss(animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,21 +84,12 @@ final class NewTodoViewController: BaseViewController {
     }
     
     @objc private func addTodo() {
-        let newTodo = TodoTable()
-        try! realm.write {
-            newTodo.title = todoInputView.titleTextField.text ?? ""
-            newTodo.memo = todoInputView.memoTextView.text.isEmpty ? nil : todoInputView.memoTextView.text
-            newTodo.deadline = selectedDeadline
-            newTodo.tag = selectedTag
-            newTodo.priority = selectedPriority
-            realm.add(newTodo)
-        }
-        folderRepository.addFolder(to: newTodo)
-        try! realm.write {
-            realm.add(newTodo)
-        }
-        NotificationCenter.default.post(name: NSNotification.Name("newTodoAdded"), object: nil)
-        dismiss(animated: true)
+        viewModel.inputTitle.value = todoInputView.titleTextField.text ?? ""
+        viewModel.inputMemo.value = todoInputView.memoTextView.text ?? ""
+        viewModel.inputDeadline.value = selectedDeadline ?? Date()
+        viewModel.inputTag.value = selectedTag ?? ""
+        viewModel.inputPriority.value = selectedPriority ?? ""
+        viewModel.inputAddButtonTapped.value = ()
     }
     
     @objc private func dismissViewController() {
@@ -144,23 +145,23 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.section == 1 {
             let deadlineVC = NewDeadlineViewController()
-            deadlineVC.onSave = { [weak self] date in
-                self?.selectedDeadline = date
-                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            deadlineVC.onSave = { date in
+                self.selectedDeadline = date
+                self.tableView.reloadRows(at: [indexPath], with: .none)
             }
             navigationController?.pushViewController(deadlineVC, animated: true)
         } else if indexPath.section == 2 {
             let tagVC = NewTagViewController()
-            tagVC.onSave = { [weak self] tag in
-                self?.selectedTag = tag
-                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            tagVC.onSave = { tag in
+                self.selectedTag = tag
+                self.tableView.reloadRows(at: [indexPath], with: .none)
             }
             navigationController?.pushViewController(tagVC, animated: true)
         } else if indexPath.section == 3 {
             let priorityVC = NewPriorityViewController()
-            priorityVC.onSave = { [weak self] priority in
-                self?.selectedPriority = priority
-                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            priorityVC.onSave = { priority in
+                self.selectedPriority = priority
+                self.tableView.reloadRows(at: [indexPath], with: .none)
             }
             navigationController?.pushViewController(priorityVC, animated: true)
         }
