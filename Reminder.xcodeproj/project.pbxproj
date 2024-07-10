@@ -156,39 +156,12 @@
 		01FF36B32C3598E1004F5F3A /* NewTodo */ = {
 			isa = PBXGroup;
 			children = (
-				01FF36E52C3D21F1004F5F3A /* ViewModel */,
-				01FF36B62C35991E004F5F3A /* View */,
-				01FF36B52C3598FF004F5F3A /* Cell */,
-				01FF36B42C3598EA004F5F3A /* Controller */,
+				01FF370F2C3E899C004F5F3A /* NewPriority */,
+				01FF370E2C3E8985004F5F3A /* NewTag */,
+				01FF370D2C3E896A004F5F3A /* NewDeadline */,
+				01FF370C2C3E8930004F5F3A /* NewTodo */,
 			);
 			path = NewTodo;
-			sourceTree = "<group>";
-		};
-		01FF36B42C3598EA004F5F3A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				01FF369C2C341C17004F5F3A /* NewTodoViewController.swift */,
-				01FF36AA2C359179004F5F3A /* NewDeadlineViewController.swift */,
-				01FF36AC2C3591A6004F5F3A /* NewTagViewController.swift */,
-				01FF36AE2C3591DC004F5F3A /* NewPriorityViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		01FF36B52C3598FF004F5F3A /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				01FF36B02C3592FE004F5F3A /* TodoInputViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		01FF36B62C35991E004F5F3A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				01FF369E2C3428FB004F5F3A /* TodoInputView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		01FF36C42C3840E6004F5F3A /* TodoList */ = {
@@ -201,14 +174,41 @@
 			path = TodoList;
 			sourceTree = "<group>";
 		};
-		01FF36E52C3D21F1004F5F3A /* ViewModel */ = {
+		01FF370C2C3E8930004F5F3A /* NewTodo */ = {
 			isa = PBXGroup;
 			children = (
-				01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */,
-				01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */,
+				01FF369C2C341C17004F5F3A /* NewTodoViewController.swift */,
+				01FF369E2C3428FB004F5F3A /* TodoInputView.swift */,
+				01FF36B02C3592FE004F5F3A /* TodoInputViewCell.swift */,
 				01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */,
 			);
-			path = ViewModel;
+			path = NewTodo;
+			sourceTree = "<group>";
+		};
+		01FF370D2C3E896A004F5F3A /* NewDeadline */ = {
+			isa = PBXGroup;
+			children = (
+				01FF36AA2C359179004F5F3A /* NewDeadlineViewController.swift */,
+				01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */,
+			);
+			path = NewDeadline;
+			sourceTree = "<group>";
+		};
+		01FF370E2C3E8985004F5F3A /* NewTag */ = {
+			isa = PBXGroup;
+			children = (
+				01FF36AC2C3591A6004F5F3A /* NewTagViewController.swift */,
+			);
+			path = NewTag;
+			sourceTree = "<group>";
+		};
+		01FF370F2C3E899C004F5F3A /* NewPriority */ = {
+			isa = PBXGroup;
+			children = (
+				01FF36AE2C3591DC004F5F3A /* NewPriorityViewController.swift */,
+				01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */,
+			);
+			path = NewPriority;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
