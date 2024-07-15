@@ -35,6 +35,8 @@
 		01FF36E92C3D2314004F5F3A /* NewDeadlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */; };
 		01FF36EB2C3D36EF004F5F3A /* NewPriorityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */; };
 		01FF370B2C3E66BA004F5F3A /* NewTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */; };
+		01FF37882C44FF5D004F5F3A /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 01FF37872C44FF5D004F5F3A /* FSCalendar */; };
+		01FF378B2C4503A9004F5F3A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF378A2C4503A9004F5F3A /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,7 @@
 		01FF36E82C3D2314004F5F3A /* NewDeadlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeadlineViewModel.swift; sourceTree = "<group>"; };
 		01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriorityViewModel.swift; sourceTree = "<group>"; };
 		01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoViewModel.swift; sourceTree = "<group>"; };
+		01FF378A2C4503A9004F5F3A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C362C02C34192400D8ED61 /* RealmSwift in Frameworks */,
+				01FF37882C44FF5D004F5F3A /* FSCalendar in Frameworks */,
 				01C362BD2C34190000D8ED61 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +144,7 @@
 				01FF36C42C3840E6004F5F3A /* TodoList */,
 				01FF36B32C3598E1004F5F3A /* NewTodo */,
 				01FF36B22C3598D3004F5F3A /* Main */,
+				01FF37892C450387004F5F3A /* Calander */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -178,9 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				01FF369C2C341C17004F5F3A /* NewTodoViewController.swift */,
+				01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */,
 				01FF369E2C3428FB004F5F3A /* TodoInputView.swift */,
 				01FF36B02C3592FE004F5F3A /* TodoInputViewCell.swift */,
-				01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */,
 			);
 			path = NewTodo;
 			sourceTree = "<group>";
@@ -211,6 +216,14 @@
 			path = NewPriority;
 			sourceTree = "<group>";
 		};
+		01FF37892C450387004F5F3A /* Calander */ = {
+			isa = PBXGroup;
+			children = (
+				01FF378A2C4503A9004F5F3A /* CalendarViewController.swift */,
+			);
+			path = Calander;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -230,6 +243,7 @@
 			packageProductDependencies = (
 				01C362BC2C34190000D8ED61 /* SnapKit */,
 				01C362BF2C34192400D8ED61 /* RealmSwift */,
+				01FF37872C44FF5D004F5F3A /* FSCalendar */,
 			);
 			productName = Reminder;
 			productReference = 01C362A22C34178600D8ED61 /* Reminder.app */;
@@ -262,6 +276,7 @@
 			packageReferences = (
 				01C362BB2C34190000D8ED61 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				01C362BE2C34192400D8ED61 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				01FF37862C44FF5D004F5F3A /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 01C362A32C34178600D8ED61 /* Products */;
 			projectDirPath = "";
@@ -294,6 +309,7 @@
 				01FF36AB2C359179004F5F3A /* NewDeadlineViewController.swift in Sources */,
 				01FF36BF2C36E409004F5F3A /* MainTodoCell.swift in Sources */,
 				01FF36CB2C3846E3004F5F3A /* BaseTableViewCell.swift in Sources */,
+				01FF378B2C4503A9004F5F3A /* CalendarViewController.swift in Sources */,
 				01FF370B2C3E66BA004F5F3A /* NewTodoViewModel.swift in Sources */,
 				01FF36DC2C3BC9D1004F5F3A /* FolderRepository.swift in Sources */,
 				01FF36AD2C3591A6004F5F3A /* NewTagViewController.swift in Sources */,
@@ -551,6 +567,14 @@
 				version = 10.52.1;
 			};
 		};
+		01FF37862C44FF5D004F5F3A /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -563,6 +587,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 01C362BE2C34192400D8ED61 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		01FF37872C44FF5D004F5F3A /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01FF37862C44FF5D004F5F3A /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
