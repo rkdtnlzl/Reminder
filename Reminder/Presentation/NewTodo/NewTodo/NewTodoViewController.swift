@@ -20,6 +20,8 @@ final class NewTodoViewController: BaseViewController {
     private var folderRepository = FolderRepository()
     let viewModel = NewTodoViewModel()
     
+    var onSave: (() -> Void)?
+
     private let sectionTitles = ["할 일 입력", "마감일", "태그", "우선 순위", "이미지 추가"]
     
     override func viewDidLoad() {
