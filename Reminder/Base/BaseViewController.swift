@@ -25,4 +25,13 @@ class BaseViewController: UIViewController {
     func configureConstraints() { }
     
     func configureTarget() { }
+    
+    func showAlert(title: String, message: String, ok: String, completionHandler: @escaping (UIAlertAction) -> Void) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+            let okAction = UIAlertAction(title: ok, style: .default, handler: completionHandler)
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true)
+        }
 }
