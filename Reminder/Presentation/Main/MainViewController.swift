@@ -14,24 +14,17 @@ final class MainViewController: BaseViewController {
     private let newTodoButton = UIButton()
     private let totalLabel = UILabel()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    private var todoRepository = TodoTableRepository()
-    private var folderRepository = FolderRepository()
-    private var folders: Results<Folder>?
-    private var todoCount = 0
+    private let viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
-        loadTodoCount()
-        loadFolders()
-        configureNotificationObservers()
+        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadTodoCount()
-        loadFolders()
-        collectionView.reloadData()
+        viewModel.inputMainViewDidLoadTrigger.value = ()
     }
     
     func configureNavigation() {
@@ -86,6 +79,9 @@ final class MainViewController: BaseViewController {
     
     @objc func newTodoButtonClicked() {
         let vc = NewTodoViewController()
+        vc.onSave = {[] in
+            self.viewModel.inputMainViewDidLoadTrigger.value = ()
+        }
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .pageSheet
         present(navVC, animated: true)
@@ -102,38 +98,22 @@ final class MainViewController: BaseViewController {
         return layout
     }
     
-    private func loadTodoCount() {
-        todoCount = todoRepository.countItems()
-        collectionView.reloadData()
-    }
-    
-    private func loadFolders() {
-        folders = folderRepository.fetchAllFolders()
-        collectionView.reloadData()
-    }
-    
-    private func configureNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(todoAdded), name: NSNotification.Name("newTodoAdded"), object: nil)
-    }
-    
-    @objc private func todoAdded() {
-        loadTodoCount()
-        loadFolders()
-    }
-    
-    func showAlert(title: String, message: String, ok: String,  completionHandler: @escaping (UIAlertAction) -> Void) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
-            let ok = UIAlertAction(title: ok, style: .default, handler: completionHandler)
-            alert.addAction(ok)
-            alert.addAction(cancel)
-            present(alert, animated: true)
+    private func bindData() {
+        viewModel.inputMainViewDidLoadTrigger.value = ()
+        viewModel.outputTodoCount.bind { todoCount in
+            self.totalLabel.text = "전체"
+            self.collectionView.reloadData()
         }
+        
+        viewModel.outputFolders.bind { _ in
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (folders?.count ?? 0) + 1
+        return (viewModel.outputFolders.value.count) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -145,8 +125,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if indexPath.row == 0 {
             cell.categoryTitle.text = "전체"
-            cell.categoryCount.text = "\(todoCount)"
-        } else if let folder = folders?[indexPath.row - 1] {
+            cell.categoryCount.text = "\(viewModel.outputTodoCount.value)"
+        } else {
+            let folder = viewModel.outputFolders.value[indexPath.row - 1]
             cell.categoryTitle.text = folder.folderName
             cell.categoryCount.text = "\(folder.folderList.count)"
         }
@@ -157,20 +138,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.row == 0 {
             let vc = TodoListViewController(folder: nil)
             navigationController?.pushViewController(vc, animated: true)
-        } else if let folder = folders?[indexPath.row - 1] {
-            
+        } else {
+            let folder = viewModel.outputFolders.value[indexPath.row - 1]
             if folder.folderList.count == 0 {
                 showAlert(title: "폴더 삭제하겠습니까?", message: "", ok: "삭제") { _ in
-                    self.folderRepository.deleteFolder(folder)
-                    self.loadTodoCount()
-                    collectionView.reloadData()
+                    self.viewModel.folderRepository.deleteFolder(folder)
+                    self.viewModel.inputMainViewDidLoadTrigger.value = ()
                 }
             } else {
                 let vc = TodoListViewController(folder: folder)
                 navigationController?.pushViewController(vc, animated: true)
             }
-            
-
         }
     }
 }
