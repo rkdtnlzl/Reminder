@@ -37,6 +37,7 @@
 		01FF370B2C3E66BA004F5F3A /* NewTodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */; };
 		01FF37882C44FF5D004F5F3A /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 01FF37872C44FF5D004F5F3A /* FSCalendar */; };
 		01FF378B2C4503A9004F5F3A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF378A2C4503A9004F5F3A /* CalendarViewController.swift */; };
+		01FF378D2C451B01004F5F3A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF378C2C451B01004F5F3A /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		01FF36EA2C3D36EF004F5F3A /* NewPriorityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPriorityViewModel.swift; sourceTree = "<group>"; };
 		01FF370A2C3E66BA004F5F3A /* NewTodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoViewModel.swift; sourceTree = "<group>"; };
 		01FF378A2C4503A9004F5F3A /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		01FF378C2C451B01004F5F3A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				01C362A92C34178600D8ED61 /* MainViewController.swift */,
 				01FF36BE2C36E409004F5F3A /* MainTodoCell.swift */,
+				01FF378C2C451B01004F5F3A /* MainViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				01FF36AB2C359179004F5F3A /* NewDeadlineViewController.swift in Sources */,
 				01FF36BF2C36E409004F5F3A /* MainTodoCell.swift in Sources */,
 				01FF36CB2C3846E3004F5F3A /* BaseTableViewCell.swift in Sources */,
+				01FF378D2C451B01004F5F3A /* MainViewModel.swift in Sources */,
 				01FF378B2C4503A9004F5F3A /* CalendarViewController.swift in Sources */,
 				01FF370B2C3E66BA004F5F3A /* NewTodoViewModel.swift in Sources */,
 				01FF36DC2C3BC9D1004F5F3A /* FolderRepository.swift in Sources */,
