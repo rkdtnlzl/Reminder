@@ -21,6 +21,7 @@ final class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigation()
         loadTodoCount()
         loadFolders()
         configureNotificationObservers()
@@ -31,6 +32,16 @@ final class MainViewController: BaseViewController {
         loadTodoCount()
         loadFolders()
         collectionView.reloadData()
+    }
+    
+    func configureNavigation() {
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonClicked))
+        self.navigationItem.leftBarButtonItem = calendarButton
+    }
+    
+    @objc func calendarButtonClicked() {
+        let vc = CalendarViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func configureHierarchy() {
