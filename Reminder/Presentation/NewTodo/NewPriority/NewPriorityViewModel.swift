@@ -14,8 +14,8 @@ class NewPriorityViewModel {
     var outputPriorityLabel = Observable("")
     
     init() {
-        inputPriorityIndex.bind { _ in
-            self.updatePriority()
+        inputPriorityIndex.bind { [weak self] _ in
+            self?.updatePriority()
         }
     }
     
