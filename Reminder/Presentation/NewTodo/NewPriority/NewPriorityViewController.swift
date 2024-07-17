@@ -27,8 +27,8 @@ final class NewPriorityViewController: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputPriorityLabel.bind { value in
-            self.priorityLabel.text = value
+        viewModel.outputPriorityLabel.bind { [weak self] value in
+            self?.priorityLabel.text = value
         }
     }
     
