@@ -23,11 +23,11 @@ final class NewDeadlineViewController: BaseViewController {
     }
     
     func bindData() {
-        viewModel.outputDateLabel.bind { date in
+        viewModel.outputDateLabel.bind { [weak self] date in
             let myFormatter = DateFormatter()
             myFormatter.dateFormat = "yyyy-MM-dd"
             let dateString = myFormatter.string(from: date)
-            self.dateLabel.text = dateString
+            self?.dateLabel.text = dateString
         }
     }
     
