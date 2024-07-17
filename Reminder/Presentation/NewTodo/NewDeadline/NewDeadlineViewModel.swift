@@ -14,8 +14,8 @@ class NewDeadlineViewModel {
     var outputDateLabel: Observable<Date> = (Observable(Date()))
     
     init() {
-        inputDateUpdate.bind { _ in
-            self.updateDate()
+        inputDateUpdate.bind { [weak self] _ in
+            self?.updateDate()
         }
     }
     
