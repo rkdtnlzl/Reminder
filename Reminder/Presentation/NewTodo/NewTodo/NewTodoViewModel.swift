@@ -30,20 +30,14 @@ class NewTodoViewModel {
             print("\(error)")
         }
         
-        inputAddButtonTapped.bind { _ in
+        inputAddButtonTapped.bind { [weak self] _ in
             print("Add clicked")
             
-            print(self.inputTitle)
-            print(self.inputMemo)
-            print(self.inputDeadline.value)
-            print(self.inputTag.value)
-            print(self.inputPriority.value)
-            
-            self.addNewTodo(newTitle: self.inputTitle.value,
-                            newMemo: self.inputMemo.value,
-                            selectedDeadline: self.inputDeadline.value,
-                            selectedTag: self.inputTag.value,
-                            selectedPriority: self.inputPriority.value)
+            self?.addNewTodo(newTitle: self?.inputTitle.value ?? "",
+                            newMemo: self?.inputMemo.value,
+                            selectedDeadline: self?.inputDeadline.value,
+                            selectedTag: self?.inputTag.value,
+                            selectedPriority: self?.inputPriority.value)
         }
     }
     
